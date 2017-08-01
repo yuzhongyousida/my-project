@@ -63,6 +63,17 @@
     <context:component-scan base-package="com.etrip.web.controller.**" />
 
     <mvc:default-servlet-handler/>
+    
+    <!-- 拦截器配置 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.etrip.web.interceptor.session.SessionInterceptor"/>
+        </mvc:interceptor>
+
+    </mvc:interceptors>
+    
+
 
 
 </beans>
