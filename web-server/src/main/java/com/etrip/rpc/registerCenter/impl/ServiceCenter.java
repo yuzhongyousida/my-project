@@ -59,6 +59,7 @@ public class ServiceCenter implements Server {
     public void start() throws IOException {
         System.out.println("ServiceCenter starting...");
         try {
+            // ServerSocket绑定端口进行监听
             ServerSocket server = new ServerSocket();
             server.bind(new InetSocketAddress(port));
 
