@@ -21,9 +21,9 @@ public class TestBioAndNio {
 //        testInputStream();
 //        testOutputStream();
 //        testNIORead();
-        testNIOWrite();
-//        testNioClient();
-//        testNioServer();
+//        testNIOWrite();
+        testNioClient();
+        testNioServer();
 
 
 
