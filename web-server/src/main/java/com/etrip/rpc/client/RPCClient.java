@@ -12,6 +12,7 @@ import java.net.Socket;
 
 /**
  * Created by Administrator on 2017/8/1.
+ * 利用动态代理获取rpc接口的实例对象
  */
 public class RPCClient<T> {
 

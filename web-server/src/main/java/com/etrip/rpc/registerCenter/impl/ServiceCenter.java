@@ -11,7 +11,6 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -30,17 +29,20 @@ public class ServiceCenter implements Server {
 
     /**
      * 所有注册服务信息装载容器
+     * key：service Interface name
+     * value: serviceImpl Class
      */
     private static final HashMap<String,Class> serviceRegistry = new HashMap<String,Class>();
 
     private static boolean isRunning = false;
-
-    private static int port;
+    private static int port = 6300;
 
 
     public ServiceCenter(int port) {
         this.port = port;
     }
+
+
 
     /**
      * 关闭注册中心
@@ -64,9 +66,7 @@ public class ServiceCenter implements Server {
             server.bind(new InetSocketAddress(port));
 
             while(true){
-                // 1、监听客户端的TCP连接，接到TCP连接后将其封装陈task，由线程池执行
                 executor.execute(new ServiceTask(server.accept()));
-
                 isRunning = true;
             }
 
@@ -96,6 +96,13 @@ public class ServiceCenter implements Server {
         return port;
     }
 
+
+
+
+
+
+
+
     /**
      * 私有静态线程内部类
      */
@@ -113,7 +120,7 @@ public class ServiceCenter implements Server {
             ObjectOutputStream output = null;
 
             try {
-                //2、将客户端发送的码流反序列化成对象，通过反射机制调用服务实现者，获取执行结果
+                // 将客户端发送的码流反序列化成对象，通过反射机制调用服务实现者，获取执行结果
                 input = new ObjectInputStream(client.getInputStream());
                 String serviceName = input.readUTF();//服务名
                 String methodName = input.readUTF();//方法名
@@ -131,7 +138,7 @@ public class ServiceCenter implements Server {
                 Method method = serviceClass.getMethod(methodName,parameterTypes);
                 Object result = method.invoke(serviceClass.newInstance(),arguments);
 
-                //3、将执行结果反序列化，通过socket发送给客户端
+                // 将执行结果反序列化，通过socket发送给客户端
                 output = new ObjectOutputStream(client.getOutputStream());
                 output.writeObject(result);
 
