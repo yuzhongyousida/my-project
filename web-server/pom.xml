@@ -247,6 +247,13 @@
             <version>2.11.1</version>
         </dependency>
 
+        <!-- 获取机器的cpu、内存等相关信息操作 -->
+        <dependency>
+            <groupId>org.hyperic</groupId>
+            <artifactId>sigar</artifactId>
+            <version>1.6.5.132</version>
+        </dependency>
+
 
         <dependency>
             <groupId>com.myself</groupId>

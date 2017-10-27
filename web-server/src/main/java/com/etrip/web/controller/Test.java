@@ -116,9 +116,20 @@ public class Test {
         }catch (Exception e){
             e.printStackTrace();
         }
+
     }
 
 
+//    private void testCpu(){
+//        try {
+//            Sigar sigar = new Sigar();
+//            CpuPerc cpuPerc = sigar.getCpuPerc();
+//            System.out.println("当前cpu的空闲率: " + CpuPerc.format(cpuPerc.getIdle()));
+//            System.out.println("当前cpu的占用率： "+ CpuPerc.format(cpuPerc.getCombined()));
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
 
 
 

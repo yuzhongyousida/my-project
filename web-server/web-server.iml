@@ -58,7 +58,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.alibaba:jconsole:1.8.0">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../jdk1.7.0_80/lib/jconsole.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../jdk1.7.0_80/lib/jconsole.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -67,7 +67,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.alibaba:tools:1.8.0">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../jdk1.7.0_80/lib/tools.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../jdk1.7.0_80/lib/tools.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -94,6 +94,7 @@
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:1.6.0.RELEASE" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.slf4j:jcl-over-slf4j:1.7.1" level="project" />
     <orderEntry type="library" name="Maven: org.mongodb:mongo-java-driver:2.11.1" level="project" />
+    <orderEntry type="library" name="Maven: org.hyperic:sigar:1.6.5.132" level="project" />
     <orderEntry type="module" module-name="web-jar" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:3.8.1" level="project" />
   </component>
