@@ -12,6 +12,8 @@
 
     <modules>
         <module>web-server</module>
+        <module>web-server1</module>
+        <module>web-server2</module>
         <module>web-jar</module>
     </modules>
 

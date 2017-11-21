@@ -12,6 +12,7 @@
     <artifactId>web-jar</artifactId>
     <name>web-jar</name>
     <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
