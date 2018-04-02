@@ -11,9 +11,9 @@
     <name>parent</name>
 
     <modules>
-        <module>web-server</module>
-        <module>web-server1</module>
-        <module>web-server2</module>
+        <module>A-server</module>
+        <module>B-server</module>
+        <module>C-server</module>
         <module>web-jar</module>
     </modules>
 
