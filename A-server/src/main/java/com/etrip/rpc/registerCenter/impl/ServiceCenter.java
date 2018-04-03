@@ -115,9 +115,6 @@ public class ServiceCenter implements Server {
 
 
 
-    /**
-     * 私有静态线程内部类
-     */
     private static class ServiceTask implements Runnable{
         Socket client = null;
 
