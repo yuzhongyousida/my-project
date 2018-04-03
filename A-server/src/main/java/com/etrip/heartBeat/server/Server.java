@@ -1,6 +1,5 @@
 package com.etrip.heartBeat.server;
 
-import com.etrip.util.common.SocketUtil;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -37,8 +36,13 @@ public class Server implements Runnable{
 
                 // 读取client端发送的数据
                 inputStream = socket.getInputStream();
-                String receiveMsg = SocketUtil.getInputStreamStr(inputStream);
-                System.out.println("服务端接收到信息：" + receiveMsg);
+                byte[] bytes = new byte[2048];
+                int len;
+                StringBuilder sb = new StringBuilder();
+                while ((len = inputStream.read(bytes)) != -1) {
+                    sb.append(new String(bytes, 0, len,"UTF-8"));
+                }
+                System.out.println("服务端接收到信息：" + sb.toString());
 
                 // 发送信息
                 String sendMsg = "hello, I'm server";
