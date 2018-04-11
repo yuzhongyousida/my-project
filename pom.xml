@@ -21,6 +21,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>3.2.10.RELEASE</spring.version>
         <quartz.version>1.8.6</quartz.version>
+        <junit.version>4.11</junit.version>
     </properties>
 
 
@@ -182,15 +183,6 @@
             <version>1.10</version>
         </dependency>
 
-
-
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.6</version>
-        </dependency>
-
         <!-- alibaba开源json解析组件包 -->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -276,6 +268,39 @@
             <groupId>org.hyperic</groupId>
             <artifactId>sigar</artifactId>
             <version>1.6.5.132</version>
+        </dependency>
+
+        <!-- test相关 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sankuai.xm</groupId>
+            <artifactId>xm-pub-api-sdk</artifactId>
+            <version>1.0.1</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j</artifactId>
+                    <groupId>log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 

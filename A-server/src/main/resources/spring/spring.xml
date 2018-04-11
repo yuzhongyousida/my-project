@@ -21,6 +21,7 @@
 	<import resource="classpath:spring/hessian/spring-hessian-provider.xml" />
 	<import resource="classpath:spring/base/spring-mvc-servlet.xml" />
 	<import resource="classpath:spring/base/spring-mongodb.xml" />
+	<import resource="classpath:spring/quartz/spring-quartz.xml" />
 
 
 </beans>

@@ -26,6 +26,7 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
      * @return
      * @throws Exception
      */
+    @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         logger.info("SessionInterceptor.preHandle()方法执行");
 
@@ -50,6 +51,7 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
      * @param modelAndView
      * @throws Exception
      */
+    @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         logger.info("SessionInterceptor.postHandle()方法执行");
     }
@@ -62,6 +64,7 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
      * @param ex
      * @throws Exception
      */
+    @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         logger.info("SessionInterceptor.afterCompletion()方法执行");
         ThreadContext.clean();
