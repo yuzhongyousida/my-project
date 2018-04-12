@@ -37,15 +37,16 @@ public class User implements Serializable{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
-
-        boolean idFlag = (id != null) ? !id.equals(user.id) : user.id != null;
-        if (idFlag){
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        return name != null ? name.equals(user.name) : user.name == null;
+
+        User user = (User) o;
+        boolean isIdEqual = (id!=null && id.equals(user.id)) || (id==null && user.id==null);
+        boolean isNameEqual = (name!=null && name.equals(user.name)) || (name==null && user.name==null);
+
+        return isIdEqual && isNameEqual;
     }
 
     /**
