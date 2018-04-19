@@ -190,6 +190,13 @@
             <version>1.1.25</version>
         </dependency>
 
+        <!-- google的gson组件包 -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.4</version>
+        </dependency>
+
         <!-- hessian依赖 -->
         <dependency>
             <groupId>com.caucho</groupId>
