@@ -2,8 +2,11 @@ package com.etrip.util;
 
 import java.io.*;
 
+/**
+ * 深度clone工具类，被clone的类必须是序列化了，否则会报错
+ * 利用对象的序列化、反序列化达到深度clone
+ */
 public class CloneUtil {
-    @SuppressWarnings("unchecked")
     public static <T extends Serializable> T clone(T obj) {
 
         T clonedObj = null;

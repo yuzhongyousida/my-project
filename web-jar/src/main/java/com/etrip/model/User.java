@@ -15,13 +15,8 @@ public class User implements Serializable, Cloneable{
     private Identity identity;
 
 
-    /**
-     * 继承自Object类的clone()方法，浅拷贝
-     * @return
-     * @throws CloneNotSupportedException
-     */
     @Override
-    protected Object clone() throws CloneNotSupportedException{
+    public Object clone() throws CloneNotSupportedException{
         return super.clone();
     }
 

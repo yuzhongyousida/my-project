@@ -1,5 +1,6 @@
 package com.etrip.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,9 @@ import java.util.List;
  * @description:
  * @date:2018/4/19
  */
-public class Identity {
+public class Identity implements Serializable {
+
+    private static final long serialVersionUID = 4980693168901248332L;
 
     private String idNo;
 

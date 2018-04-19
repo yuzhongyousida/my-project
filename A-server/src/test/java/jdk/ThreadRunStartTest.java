@@ -1,10 +1,11 @@
+package jdk;
+
 /**
  * @author: wangteng
  * @description:
  * @date:2018/4/19
  */
-public class Test {
-
+public class ThreadRunStartTest {
 
     public static void main(String[] args) {
         test1();
@@ -63,4 +64,5 @@ public class Test {
         System.out.println("test2()方法执行end-----");
 
     }
+
 }

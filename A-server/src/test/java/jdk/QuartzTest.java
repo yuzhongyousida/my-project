@@ -1,5 +1,8 @@
+package jdk;
+
 import com.etrip.dynamicQuartz.QuartzJob;
 import com.etrip.dynamicQuartz.QuartzManager;
+import junit.framework.TestCase;
 import org.junit.Test;
 import org.quartz.Scheduler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +13,7 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
  * @description:
  * @date:2018/4/11
  */
-public class QuartzTest extends BaseTest{
+public class QuartzTest extends TestCase {
 
     @Autowired
     private SchedulerFactoryBean schedulerFactoryBean;

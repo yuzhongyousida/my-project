@@ -1,3 +1,5 @@
+package jdk;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,14 +44,14 @@ public class ObjectTest {
         Method method = userClazz.getMethod("getId");
         Override overrideAnnotation = method.getAnnotation(Override.class);
         if(overrideAnnotation==null){
-            System.out.println("User.getId() method has no override annotation");
+            System.out.println("jdk.User.getId() method has no override annotation");
         }
 
         // 获取属性上的注解
         Field idField = userClazz.getDeclaredField("id");
         Autowired autowiredAnnotation = idField.getAnnotation(Autowired.class);
         if(autowiredAnnotation==null){
-            System.out.println("User.id field has no autowired annotation");
+            System.out.println("jdk.User.id field has no autowired annotation");
         }
 
     }
