@@ -15,7 +15,7 @@ public class CloneTest {
 
     private static void test1(){
         User user = new User();
-
+        
 
     }
 
