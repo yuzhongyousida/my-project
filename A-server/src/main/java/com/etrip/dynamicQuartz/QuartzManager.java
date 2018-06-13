@@ -2,9 +2,7 @@ package com.etrip.dynamicQuartz;
 
 import com.etrip.util.common.CommonUtil;
 import org.apache.log4j.Logger;
-import org.quartz.CronTrigger;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
+import org.quartz.*;
 import org.springframework.util.StringUtils;
 
 /**
@@ -52,13 +50,17 @@ public class QuartzManager {
         try {
 
             // 生成JobDetail实例
-            JobDetail jobDetail = new JobDetail(jobName, jobGroup, jobClazz);
+            JobDetail jobDetail = JobBuilder.newJob(jobClazz)
+                    .withIdentity(jobName, jobGroup)
+                    .usingJobData("id", 1L)
+                    .build();
 
-            // 生成触发器实例
-            CronTrigger trigger = new CronTrigger(jobName, triggerGroup);
-
-            // 触发器时间设置
-            trigger.setCronExpression(expression);
+            // 生成trigger实例
+            CronTrigger trigger = TriggerBuilder.newTrigger()
+                    .withIdentity(jobName+"_trigger", triggerGroup)
+                    .withSchedule(CronScheduleBuilder.cronSchedule(expression))
+                    .startNow()
+                    .build();
 
             // 加入调度器
             scheduler.scheduleJob(jobDetail, trigger);
@@ -83,8 +85,7 @@ public class QuartzManager {
      * @param jobName
      * @param expression
      */
-    @SuppressWarnings("rawtypes")
-    public static boolean modifyJobExpression(Scheduler scheduler, String jobName, String expression, String jobGroupName, String triggerGroupName) {
+    public static boolean modifyJobExpression(Scheduler scheduler, String jobName, String expression, String triggerGroupName) {
         boolean result = false;
 
         // 入参校验
@@ -92,26 +93,29 @@ public class QuartzManager {
             return result;
         }
 
-        String jobGroup = StringUtils.isEmpty(jobGroupName)? JOB_GROUP_NAME : jobGroupName;
         String triggerGroup = StringUtils.isEmpty(triggerGroupName)? TRIGGER_GROUP_NAME : triggerGroupName;
 
         try {
             // 校验触发器是否存在
-            CronTrigger trigger = (CronTrigger) scheduler.getTrigger(jobName, triggerGroup);
+            TriggerKey triggerKey = TriggerKey.triggerKey(jobName+"_trigger", triggerGroup);
+            CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
             if (trigger == null) {
                 return false;
             }
 
+            // 时间表达式是否被修改
             String oldExpression = trigger.getCronExpression();
             if (!oldExpression.equalsIgnoreCase(expression)) {
-                JobDetail jobDetail = scheduler.getJobDetail(jobName, jobGroup);
-                Class objJobClass = jobDetail.getJobClass();
 
-                // 移除
-                removeJob(scheduler, jobName, jobGroup, triggerGroup);
+                // 新生成触发器
+                trigger = TriggerBuilder.newTrigger()
+                        .withIdentity(jobName+"_trigger", triggerGroup)
+                        .withSchedule(CronScheduleBuilder.cronSchedule(expression))
+                        .startNow()
+                        .build();
 
-                // 新增
-                addJob(scheduler, jobName, objJobClass, expression, jobGroup, triggerGroup);
+                // 替换
+                scheduler.rescheduleJob(triggerKey, trigger);
             }
 
             result = true;
@@ -122,46 +126,6 @@ public class QuartzManager {
         return result;
     }
 
-    /**
-     * 修改一个任务的触发时间
-     * @param scheduler
-     * @param triggerName
-     * @param triggerGroupName
-     * @param expression
-     */
-    public static boolean modifyJobTime(Scheduler scheduler, String triggerName, String triggerGroupName, String expression) {
-        boolean result = false;
-
-        // 入参校验
-        if (!CommonUtil.checkParamBlank(scheduler, triggerName, triggerGroupName, expression)){
-            return result;
-        }
-
-        try {
-            CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerName, triggerGroupName);
-            if (trigger == null) {
-                return result;
-            }
-
-            String oldExpression = trigger.getCronExpression();
-
-            if (!oldExpression.equalsIgnoreCase(expression)) {
-                CronTrigger ct = (CronTrigger) trigger;
-
-                // 修改时间
-                ct.setCronExpression(expression);
-
-                // 重启触发器
-                scheduler.resumeTrigger(triggerName, triggerGroupName);
-            }
-
-            result = true;
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-
-        return result;
-    }
 
     /**
      * 移除一个任务
@@ -183,14 +147,16 @@ public class QuartzManager {
         String triggerGroup = StringUtils.isEmpty(triggerGroupName)? TRIGGER_GROUP_NAME : triggerGroupName;
 
         try {
+            TriggerKey triggerKey = TriggerKey.triggerKey(jobName+"_trigger", triggerGroup);
+
             // 停止触发器
-            scheduler.pauseTrigger(jobName, triggerGroup);
+            scheduler.pauseTrigger(triggerKey);
 
             // 移除触发器
-            scheduler.unscheduleJob(jobName, triggerGroup);
+            scheduler.unscheduleJob(triggerKey);
 
             // 删除任务
-            scheduler.deleteJob(jobName, jobGroup);
+            scheduler.deleteJob(JobKey.jobKey(jobName, jobGroup));
 
             result = true;
         } catch (Exception e) {

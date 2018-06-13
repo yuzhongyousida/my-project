@@ -10,6 +10,15 @@ public class UserDto implements Serializable{
 
     private String userName;
     private String password;
+    private Integer age;
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 
     public String getUserName() {
         return userName;
