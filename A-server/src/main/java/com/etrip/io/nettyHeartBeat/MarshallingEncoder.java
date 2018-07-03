@@ -13,6 +13,9 @@ import java.io.IOException;
  */
 public class MarshallingEncoder {
 
+    /**
+     * 占位符（4个字节）
+     */
     private static final byte[] LENGTH_PLACEHOLDER = new byte[4];
 
 
@@ -28,11 +31,14 @@ public class MarshallingEncoder {
     protected void encode(Object msg, ByteBuf out){
         try {
             int lengthPos = out.writerIndex();
+
             out.writeBytes(LENGTH_PLACEHOLDER);
+
             ChannelBufferByteOutput output = new ChannelBufferByteOutput(out);
             marshaller.start(output);
             marshaller.writeObject(msg);
             marshaller.finish();
+
             out.setInt(lengthPos, out.writerIndex() - lengthPos -4);
         } catch (IOException e) {
             e.printStackTrace();

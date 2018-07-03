@@ -13,19 +13,19 @@ import java.io.IOException;
 public class MarshallingCodeCFactory {
 
     /**
-     * 创建Jboss MarshallingDecoder
+     * 创建Jboss MarshallingDecoder实例
      */
-    public static MarshallingDecoder buildMarshallingDecoder() {
+    public static MarshallingDecoder buildMarshallingDecoder() throws IOException {
         final MarshallerFactory factory = Marshalling.getProvidedMarshallerFactory("serial");
         final MarshallingConfiguration configuration = new MarshallingConfiguration();
         configuration.setVersion(5);
         UnmarshallerProvider provider = new DefaultUnmarshallerProvider(factory, configuration);
-        MarshallingDecoder decoder = new MarshallingDecoder(provider, 1024*1024);
+        MarshallingDecoder decoder = new MarshallingDecoder();
         return decoder;
     }
 
     /**
-     * 创建Jboss MarshallingEncoder
+     * 创建Jboss MarshallingEncoder实例
      */
     public static MarshallingEncoder buildMarshallingEncoder() throws IOException {
         final MarshallerFactory factory = Marshalling.getProvidedMarshallerFactory("serial");
@@ -37,7 +37,7 @@ public class MarshallingCodeCFactory {
     }
 
     /**
-     * 创建Jboss Marshaller
+     * 创建Jboss Marshaller实例
      * @throws IOException
      */
     protected static Marshaller buildMarshalling() throws IOException {
@@ -49,7 +49,7 @@ public class MarshallingCodeCFactory {
     }
 
     /**
-     * 创建Jboss Unmarshaller
+     * 创建Jboss Unmarshaller实例
      * @throws IOException
      */
     protected static Unmarshaller buildUnMarshalling() throws IOException {
