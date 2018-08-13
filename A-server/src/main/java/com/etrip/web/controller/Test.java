@@ -6,6 +6,10 @@ import com.etrip.rpc.registerCenter.impl.ServiceCenter;
 import com.etrip.rpc.service.HelloService;
 import com.etrip.rpc.service.impl.*;
 
+import javax.servlet.ServletResponse;
+import javax.servlet.ServletResponseWrapper;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
 import java.io.RandomAccessFile;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -24,8 +28,9 @@ public class Test {
 //        test1();
 //        testRpc();
 
-        testByteBuffer();
-        testMappedByteBuffer();
+        System.out.println(HttpServletResponseWrapper.class.isAssignableFrom(ServletResponseWrapper.class));
+//        testByteBuffer();
+//        testMappedByteBuffer();
 
     }
 
