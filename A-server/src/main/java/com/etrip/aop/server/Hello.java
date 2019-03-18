@@ -1,4 +1,4 @@
-package com.etrip.aop;
+package com.etrip.aop.server;
 
 /**
  * @author: wangteng

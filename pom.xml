@@ -24,6 +24,7 @@
 
     <modules>
         <module>A-server</module>
+        <module>B-server</module>
         <module>web-jar</module>
     </modules>
 
@@ -401,6 +402,13 @@
             <groupId>org.jboss.marshalling</groupId>
             <artifactId>jboss-marshalling-serial</artifactId>
             <version>1.3.0.CR9</version>
+        </dependency>
+
+        <!-- java命令行解析器 -->
+        <dependency>
+            <groupId>com.beust</groupId>
+            <artifactId>jcommander</artifactId>
+            <version>1.71</version>
         </dependency>
 
     </dependencies>

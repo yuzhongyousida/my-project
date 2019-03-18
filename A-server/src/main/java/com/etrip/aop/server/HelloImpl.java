@@ -1,4 +1,4 @@
-package com.etrip.aop;
+package com.etrip.aop.server;
 
 /**
  * @author: wangteng
@@ -10,4 +10,5 @@ public class HelloImpl implements IHello{
     public void sayHello(String name) {
         System.out.println("hello, " + name);
     }
+
 }

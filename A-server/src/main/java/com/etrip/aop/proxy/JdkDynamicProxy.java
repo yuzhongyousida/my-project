@@ -1,4 +1,6 @@
-package com.etrip.aop;
+package com.etrip.aop.proxy;
+
+import com.etrip.aop.Logger;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

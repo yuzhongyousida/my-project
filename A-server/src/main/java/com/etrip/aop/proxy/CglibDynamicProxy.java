@@ -1,11 +1,11 @@
-package com.etrip.aop;
+package com.etrip.aop.proxy;
 
+import com.etrip.aop.Logger;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 
 /**
  * @author: wangteng
@@ -24,6 +24,7 @@ public class CglibDynamicProxy implements MethodInterceptor{
      * @return
      */
     public Object createProxy(Object object){
+        // 被代理的目标对象赋值
         this.target = object;
 
         // 创建核心类
