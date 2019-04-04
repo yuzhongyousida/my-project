@@ -10,7 +10,7 @@
 		   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
            
 	<!--<context:component-scan base-package="com.etrip.dao" />-->
-	<context:component-scan base-package="com.etrip.service" />
+	<context:component-scan base-package="com.myself.service" />
 
 
 	<!-- ########### 本工程的配置文件 ########## -->
@@ -23,13 +23,13 @@
 	<import resource="classpath:spring/quartz/spring-quartz.xml" />
 
 	<!-- 自定义切面通知类 -->
-	<bean id="timeCostLogActive" class="com.etrip.aop.TimeCostLogActive"/>
+	<bean id="timeCostLogActive" class="com.myself.aop.TimeCostLogActive"/>
 
 	<aop:config proxy-target-class="true">
 		<!-- 切面（切点和通知的集合） -->
 		<aop:aspect id="timeCostLogAspect" ref="timeCostLogActive">
 			<!-- 切点 -->
-			<aop:pointcut id="servicePointCut" expression="execution(* com.etrip.service.impl.*.*(..))"/>
+			<aop:pointcut id="servicePointCut" expression="execution(* com.myself.service.impl.*.*(..))"/>
 
 			<!-- 通知（一共5种：before、after、after-returning、after-throwing、around） -->
 			<aop:before method="before" pointcut-ref="servicePointCut"/>

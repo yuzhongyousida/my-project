@@ -1,8 +1,8 @@
 package jdk;
 
-import com.etrip.model.Identity;
-import com.etrip.model.User;
-import com.etrip.util.CloneUtil;
+import com.myself.model.Identity;
+import com.myself.model.User;
+import com.myself.util.CloneUtil;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -60,7 +60,7 @@
 
     <mvc:annotation-driven />
 
-    <context:component-scan base-package="com.etrip.web.controller.**" />
+    <context:component-scan base-package="com.myself.web.controller.**" />
 
     <mvc:default-servlet-handler/>
     
@@ -68,7 +68,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="com.etrip.web.interceptor.session.SessionInterceptor"/>
+            <bean class="com.myself.web.interceptor.session.SessionInterceptor"/>
         </mvc:interceptor>
 
     </mvc:interceptors>

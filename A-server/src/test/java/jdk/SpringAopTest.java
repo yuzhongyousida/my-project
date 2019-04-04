@@ -1,7 +1,7 @@
 package jdk;
 
 import base.JunitBaseTest;
-import com.etrip.service.TestService;
+import com.myself.service.TestService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

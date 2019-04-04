@@ -13,7 +13,7 @@
 
     <listener>
         <display-name>SpringBeanProxy</display-name>
-        <listener-class>com.etrip.util.common.SuperContextLoaderListener</listener-class>
+        <listener-class>com.myself.util.common.SuperContextLoaderListener</listener-class>
     </listener>
 
 

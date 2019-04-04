@@ -1,8 +1,8 @@
 package jdk;
 
 import base.JunitBaseTest;
-import com.etrip.dynamicQuartz.QuartzJob;
-import com.etrip.dynamicQuartz.QuartzManager;
+import com.myself.dynamicQuartz.QuartzJob;
+import com.myself.dynamicQuartz.QuartzManager;
 import org.junit.Test;
 import org.quartz.Scheduler;
 import org.springframework.beans.factory.annotation.Autowired;
