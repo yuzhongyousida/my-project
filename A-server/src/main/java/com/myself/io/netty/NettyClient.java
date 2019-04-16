@@ -1,13 +1,20 @@
 package com.myself.io.netty;
 
+import com.myself.io.netty.codec.PacketCodec;
 import com.myself.io.netty.handler.ClientHandler;
+import com.myself.io.netty.packet.MessageRequestPacket;
+import com.myself.io.netty.util.LoginUtil;
 import io.netty.bootstrap.Bootstrap;
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.util.Date;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -80,6 +87,12 @@ public class NettyClient {
                 .addListener(future -> {
                     if (future.isSuccess()){
                         System.out.println("连接成功，" + host + ":" + port);
+
+                        // 连接成功，从控制台持续获取输入
+                        Channel channel = ((ChannelFuture)future).channel();
+                        startConsoleThread(channel);
+
+
                     }else if (retry==0){
                         System.out.println("重试次数已用完，放弃连接！");
                     }else{
@@ -97,6 +110,24 @@ public class NettyClient {
 
                     }
                 });
+    }
+
+
+    private static void startConsoleThread(Channel channel){
+        new Thread(()->{
+            while(!Thread.interrupted()){
+                if (LoginUtil.isLogin(channel)){
+                    Scanner scanner = new Scanner(System.in);
+                    String line = scanner.nextLine();
+                    if (line!=null){
+                        MessageRequestPacket packet = new MessageRequestPacket();
+                        packet.setMessage(line);
+                        ByteBuf byteBuf = PacketCodec.getInstance().encode(packet);
+                        channel.writeAndFlush(byteBuf);
+                    }
+                }
+            }
+        }).start();
     }
 
 

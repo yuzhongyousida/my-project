@@ -1,9 +1,6 @@
 package com.myself.io.netty.codec;
 
-import com.myself.io.netty.packet.Command;
-import com.myself.io.netty.packet.LoginRequestPacket;
-import com.myself.io.netty.packet.LoginResponsePacket;
-import com.myself.io.netty.packet.Packet;
+import com.myself.io.netty.packet.*;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.ChannelHandlerContext;
@@ -97,6 +94,10 @@ public class PacketCodec {
                 return LoginRequestPacket.class;
             case Command.LOGIN_RESPONSE :
                 return LoginResponsePacket.class;
+            case Command.MESSAGE_REQUEST :
+                return MessageRequestPacket.class;
+            case Command.MESSAGE_RESPONSE :
+                return MessageResponsePacket.class;
 
             default: return null;
         }
