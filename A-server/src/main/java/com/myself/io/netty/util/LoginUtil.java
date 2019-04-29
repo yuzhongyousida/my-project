@@ -5,9 +5,6 @@ import io.netty.channel.Channel;
 import io.netty.util.Attribute;
 import io.netty.util.AttributeKey;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-
 /**
  * @author: wangteng
  * @description:
