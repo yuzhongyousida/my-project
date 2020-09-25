@@ -33,6 +33,13 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <!-- sofa-rpc依赖 -->
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>sofa-rpc-all</artifactId>
+            <version>5.6.4-SNAPSHOT</version>
+        </dependency>
+
 
     </dependencies>
 
