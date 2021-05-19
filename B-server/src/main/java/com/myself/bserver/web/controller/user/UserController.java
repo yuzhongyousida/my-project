@@ -2,6 +2,7 @@ package com.myself.bserver.web.controller.user;
 
 import com.myself.bserver.dto.UserInfoDTO;
 import com.myself.bserver.service.UserInfoService;
+import com.myself.bserver.web.controller.base.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +16,7 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController {
     @Autowired
     private UserInfoService userInfoService;
 
