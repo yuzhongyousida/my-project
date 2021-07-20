@@ -1,6 +1,6 @@
 package com.myself.bserver;
 
-import org.mybatis.spring.annotation.MapperScan;
+import com.myself.bserver.listener.MyApplicationStartedEventListener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,6 +12,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BserverApplication {
     public static void main(String[] args) {
-        SpringApplication.run(BserverApplication.class);
+        SpringApplication app = new SpringApplication(BserverApplication.class);
+        // 自定义listener
+        app.addListeners(new MyApplicationStartedEventListener());
+        app.run();
     }
 }
