@@ -1,88 +1,37 @@
 package com.myself.bserver.dto;
 
+import lombok.Data;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
+@Data
+@NotNull(message = "入参不能为空！")
 public class UserInfoDTO implements Serializable {
+
+    private static final long serialVersionUID = -3210225686433388649L;
+
     private Long id;
 
+    @NotBlank(message = "学生名称不能为空！")
     private String userName;
 
+    @Min(value = 1, message = "学生年龄必须大于等于1！")
     private Integer age;
 
+    @Min(value = 0, message = "学生成绩必须大于等于0！")
     private Integer score;
 
     private Date createTime;
 
-    private String createBy;
+    private String createBy = "wangteng05";
 
     private Date updateTime;
 
     private String updateBy;
 
-    private static final long serialVersionUID = 1L;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getCreateBy() {
-        return createBy;
-    }
-
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy == null ? null : createBy.trim();
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getUpdateBy() {
-        return updateBy;
-    }
-
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy == null ? null : updateBy.trim();
-    }
 }

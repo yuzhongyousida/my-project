@@ -7,6 +7,7 @@ import java.io.*;
  * 利用对象的序列化、反序列化达到深度clone
  */
 public class CloneUtil {
+
     public static <T extends Serializable> T clone(T obj) {
 
         T clonedObj = null;
