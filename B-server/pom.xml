@@ -15,7 +15,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <springboot.version>2.1.10.RELEASE</springboot.version>
+        <springboot.version>2.5.12</springboot.version>
         <mysql-connector-java.version>8.0.14</mysql-connector-java.version>
     </properties>
 
