@@ -13,7 +13,6 @@
     <modules>
         <module>A-server</module>
         <module>B-server</module>
-        <module>web-jar</module>
     </modules>
 
     <properties>
