@@ -65,4 +65,21 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    /**
+     * @description: 根据条件查询用户列表
+     * @params: [user]
+     * @return: org.springframework.http.ResponseEntity<java.util.List<com.myself.entity.User>>
+     * @author: wangteng
+     * @date: 2025/10/15
+     */
+    @PostMapping("/getUsersByConditions")
+    public ResponseEntity<List<User>> getUsersByConditions(@RequestBody User user) {
+        if (user == null ||
+                (user.getUsername() == null && user.getEmail() == null && user.getAge() == null)) {
+            return ResponseEntity.badRequest().build();
+        }
+        List<User> users = userService.getUsersByConditions(user);
+        return ResponseEntity.ok(users);
+    }
 }

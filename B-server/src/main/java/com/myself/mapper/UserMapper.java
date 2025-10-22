@@ -19,4 +19,7 @@ public interface UserMapper {
 
     // 根据ID删除用户
     int deleteById(Long id);
+
+     // 根据条件查询用户
+    List<User> getUsersByConditions(User user);
 }

@@ -48,4 +48,9 @@ public class UserServiceImpl implements UserService {
         return userMapper.deleteById(id) > 0;
     }
 
+    @Override
+    public List<User> getUsersByConditions(User user) {
+        return userMapper.getUsersByConditions(user);
+    }
+
 }

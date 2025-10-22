@@ -29,6 +29,25 @@
         ORDER BY id DESC
     </select>
 
+    <!-- 根据条件查询用户列表 -->
+    <select id="getUsersByConditions" resultType="com.myself.entity.User" parameterType="com.myself.entity.User">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user
+        <where>
+            <if test="username != null">
+                AND username LIKE CONCAT('%', #{username}, '%')
+            </if>
+            <if test="email != null">
+                AND email LIKE CONCAT('%', #{email}, '%')
+            </if>
+            <if test="age != null">
+                AND age = #{age}
+            </if>
+        </where>
+        ORDER BY create_time DESC
+    </select>
+
     <!-- 更新用户 -->
     <update id="update" parameterType="com.myself.entity.User">
         UPDATE user

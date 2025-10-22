@@ -19,4 +19,7 @@ public interface UserService {
 
     // 删除用户
     boolean deleteUser(Long id);
+
+     // 根据条件查询用户
+    List<User> getUsersByConditions(User user);
 }
