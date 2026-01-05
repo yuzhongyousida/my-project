@@ -10,10 +10,10 @@
     <packaging>pom</packaging>
     <name>parent</name>
 
-    <modules>
+    <!--<modules>
         <module>A-server</module>
         <module>B-server</module>
-    </modules>
+    </modules>-->
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
