@@ -1,41 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+
+    <!-- 父工程关联 -->
     <parent>
         <groupId>com.demo</groupId>
-        <artifactId>parent</artifactId>
+        <artifactId>my-project</artifactId>
         <version>1.0.0</version>
-        <relativePath>../pom.xml</relativePath> <!-- 指向父工程pom -->
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.demo</groupId>
     <artifactId>product-server</artifactId>
-    <version>1.0.0</version>
     <name>product-server</name>
-    <description>产品子模块</description>
+    <description>商品模块子工程</description>
     <packaging>jar</packaging>
 
-
-    <!-- 引入父工程管理的依赖（无需指定版本） -->
+    <!-- 显式声明所有依赖及版本 -->
     <dependencies>
+        <!-- SpringBoot Web核心依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.7.18</version>
         </dependency>
+
+        <!-- MyBatis整合SpringBoot -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.3.0</version>
         </dependency>
+
+        <!-- MySQL驱动 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
+            <scope>runtime</scope>
         </dependency>
+
+        <!-- SpringBoot测试 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.7.18</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- SpringBoot核心（兜底，确保注解能识别） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>2.7.18</version>
         </dependency>
     </dependencies>
 
@@ -45,6 +64,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.7.18</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
