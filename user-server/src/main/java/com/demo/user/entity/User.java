@@ -1,4 +1,4 @@
-package com.demo.product.entity;
+package com.demo.user.entity;
 
 /**
  * @FileName User

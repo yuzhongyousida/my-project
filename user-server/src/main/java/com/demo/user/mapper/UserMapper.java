@@ -1,6 +1,7 @@
-package com.demo.product.mapper;
+package com.demo.user.mapper;
 
-import com.demo.product.entity.User;
+import com.demo.user.entity.User;
+import com.demo.user.entity.UserQuery;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,5 +24,10 @@ public interface UserMapper {
     // 新增用户
     int insertUser(User user);
 
+    // 根据条件查询用户列表
+    List<User> selectUsersByCondition(UserQuery query);
+
+    // 根据条件查询用户总数
+    int countUsersByCondition(UserQuery query);
 
 }

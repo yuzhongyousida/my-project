@@ -1,8 +1,9 @@
-package com.demo.product.service.impl;
+package com.demo.user.service.impl;
 
-import com.demo.product.entity.User;
-import com.demo.product.mapper.UserMapper;
-import com.demo.product.service.UserService;
+import com.demo.user.entity.User;
+import com.demo.user.entity.UserQuery;
+import com.demo.user.mapper.UserMapper;
+import com.demo.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +33,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean addUser(User user) {
         return userMapper.insertUser(user) > 0;
+    }
+
+    @Override
+    public List<User> queryUsers(UserQuery query) {
+        return userMapper.selectUsersByCondition(query);
+    }
+
+    @Override
+    public int countUsers(UserQuery query) {
+        return userMapper.countUsersByCondition(query);
     }
 }

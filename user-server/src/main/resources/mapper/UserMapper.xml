@@ -2,16 +2,56 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.demo.product.mapper.UserMapper">
-    <select id="selectUserById" resultType="com.demo.product.entity.User">
+<mapper namespace="com.demo.user.mapper.UserMapper">
+    <select id="selectUserById" resultType="com.demo.user.entity.User">
         SELECT id, username, phone, age FROM user WHERE id = #{id}
     </select>
 
-    <select id="selectAllUsers" resultType="com.demo.product.entity.User">
+    <select id="selectAllUsers" resultType="com.demo.user.entity.User">
         SELECT id, username, phone, age FROM user
     </select>
 
-    <insert id="insertUser" parameterType="com.demo.product.entity.User" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertUser" parameterType="com.demo.user.entity.User" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO user (username, phone, age) VALUES (#{username}, #{phone}, #{age})
     </insert>
+
+    <select id="selectUsersByCondition" resultType="com.demo.user.entity.User">
+        SELECT id, username, phone, age 
+        FROM user 
+        <where>
+            <if test="phone != null and phone != ''">
+                AND phone = #{phone}
+            </if>
+            <if test="username != null and username != ''">
+                AND username LIKE CONCAT('%', #{username}, '%')
+            </if>
+            <if test="minAge != null">
+                AND age <![CDATA[ >= ]]> #{minAge}
+            </if>
+            <if test="maxAge != null">
+                AND age <![CDATA[ <= ]]> #{maxAge}
+            </if>
+        </where>
+        ORDER BY create_time DESC
+        LIMIT #{pageSize} OFFSET (#{pageNum,javaType=Integer} - 1) * #{pageSize,javaType=Integer}
+    </select>
+
+    <select id="countUsersByCondition" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM user 
+        <where>
+            <if test="phone != null and phone != ''">
+                AND phone = #{phone}
+            </if>
+            <if test="username != null and username != ''">
+                AND username LIKE CONCAT('%', #{username}, '%')
+            </if>
+            <if test="minAge != null">
+                AND age <![CDATA[ >= ]]> #{minAge}
+            </if>
+            <if test="maxAge != null">
+                AND age <![CDATA[ <=]]> #{maxAge}
+            </if>
+        </where>
+    </select>
 </mapper>
