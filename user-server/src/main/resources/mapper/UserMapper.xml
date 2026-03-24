@@ -11,7 +11,7 @@
         SELECT id, username, phone, age FROM user
     </select>
 
-    <insert id="insertUser" parameterType="com.demo.product.entity.User">
+    <insert id="insertUser" parameterType="com.demo.product.entity.User" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO user (username, phone, age) VALUES (#{username}, #{phone}, #{age})
     </insert>
 </mapper>

@@ -11,7 +11,7 @@
         SELECT id, name, price, stock FROM product
     </select>
 
-    <insert id="insertProduct" parameterType="com.demo.product.entity.Product">
+    <insert id="insertProduct" parameterType="com.demo.product.entity.Product" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO product (name, price, stock) VALUES (#{name}, #{price}, #{stock})
     </insert>
 </mapper>
