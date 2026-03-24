@@ -1,0 +1,20 @@
+# 商品模块配置（端口8082）
+server:
+  port: 8082
+  servlet:
+    context-path: /product-server
+
+# 数据源配置（和user-server共用一个库，也可单独建库）
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo_db?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root  # 替换为你的MySQL用户名
+    password: root  # 替换为你的MySQL密码
+
+# MyBatis配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.demo.product.entity
+  configuration:
+    map-underscore-to-camel-case: true
