@@ -19,6 +19,20 @@
 
     <!-- 显式声明所有依赖及版本 -->
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>4.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>2.1.2</version>
+            <scope>compile</scope>
+        </dependency>
+
         <!-- SpringBoot Web核心依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
