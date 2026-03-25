@@ -90,3 +90,6 @@ Icon
 ## hack for graddle wrapper
 !wrapper/*.jar
 !**/wrapper/*.jar
+product-server/.mvn/wrapper/maven-wrapper.properties
+.vscode/settings.json
+.gitignore
