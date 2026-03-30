@@ -24,7 +24,11 @@ public class Product {
     private Integer isDeleted; // 逻辑删除标记：0-未删除，1-已删除
 
 
-    // 构造方法
+    /**
+     * @Description 构造方法
+     * @Author Peter
+     * @Date 2026-03-30
+     */
     public Product() {
     }
 
@@ -76,6 +80,11 @@ public class Product {
         this.isDeleted = isDeleted;
     }
 
+    /**
+     * @Description 商品信息字符串表示
+     * @Author Peter
+     * @Date 2026-03-30
+     */
     @Override
     public String toString() {
         return "Product{" +

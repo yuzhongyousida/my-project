@@ -13,6 +13,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @MapperScan("com.demo.product.mapper")
 public class ProductServerApplication {
+    /**
+     * @Description 应用程序入口
+     * @Author Peter
+     * @Date 2026-03-30
+     */
     public static void main(String[] args) {
         SpringApplication.run(ProductServerApplication.class, args);
     }

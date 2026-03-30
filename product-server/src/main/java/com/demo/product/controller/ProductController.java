@@ -30,21 +30,33 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    // 根据ID查询商品：GET /product/1
+    /**
+     * @Description 根据ID查询商品
+     * @Author Peter
+     * @Date 2026-03-30
+     */
     @GetMapping("/{id}")
     public Product getProductById(@PathVariable Long id) {
         logger.info("查询商品，id: {}", id);
         return productService.getProductById(id);
     }
 
-    // 查询所有商品：GET /product/list
+    /**
+     * @Description 查询所有商品列表
+     * @Author Peter
+     * @Date 2026-03-30
+     */
     @GetMapping("/list")
     public List<Product> getAllProducts() {
         logger.info("查询所有商品列表");
         return productService.getAllProducts();
     }
 
-    // 新增商品：POST /product
+    /**
+     * @Description 新增商品
+     * @Author Peter
+     * @Date 2026-03-30
+     */
     @PostMapping
     public String addProduct(@Valid @RequestBody Product product) {
         logger.info("新增商品，product: {}", product);
@@ -52,7 +64,11 @@ public class ProductController {
         return result ? "商品新增成功" : "商品新增失败";
     }
 
-    // 更新商品：PUT /product
+    /**
+     * @Description 更新商品
+     * @Author Peter
+     * @Date 2026-03-30
+     */
     @PutMapping
     public String updateProduct(@Valid @RequestBody Product product) {
         logger.info("更新商品，product: {}", product);
@@ -60,7 +76,11 @@ public class ProductController {
         return result ? "商品更新成功" : "商品更新失败";
     }
 
-    // 删除商品：DELETE /product/1
+    /**
+     * @Description 删除商品
+     * @Author Peter
+     * @Date 2026-03-30
+     */
     @DeleteMapping("/{id}")
     public String deleteProduct(@PathVariable Long id) {
         logger.info("删除商品，id: {}", id);
@@ -68,7 +88,11 @@ public class ProductController {
         return result ? "商品删除成功" : "商品删除失败";
     }
 
-    // 多条件查询商品列表：GET /product/query
+    /**
+     * @Description 多条件查询商品列表
+     * @Author Peter
+     * @Date 2026-03-30
+     */
     @GetMapping("/query")
     public Map<String, Object> queryProducts(@Valid ProductQuery query) {
         logger.info("多条件查询商品，query: {}", query);

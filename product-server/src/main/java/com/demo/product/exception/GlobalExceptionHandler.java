@@ -21,6 +21,11 @@ public class GlobalExceptionHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
+    /**
+     * @Description 处理参数验证异常
+     * @Author Peter
+     * @Date 2026-03-30
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, Object> handleValidationException(MethodArgumentNotValidException e) {
@@ -37,6 +42,11 @@ public class GlobalExceptionHandler {
         return result;
     }
 
+    /**
+     * @Description 处理参数绑定异常
+     * @Author Peter
+     * @Date 2026-03-30
+     */
     @ExceptionHandler(BindException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, Object> handleBindException(BindException e) {
@@ -53,6 +63,11 @@ public class GlobalExceptionHandler {
         return result;
     }
 
+    /**
+     * @Description 处理约束验证异常
+     * @Author Peter
+     * @Date 2026-03-30
+     */
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, Object> handleConstraintViolationException(ConstraintViolationException e) {
@@ -70,6 +85,11 @@ public class GlobalExceptionHandler {
         return result;
     }
 
+    /**
+     * @Description 处理系统异常
+     * @Author Peter
+     * @Date 2026-03-30
+     */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Map<String, Object> handleException(Exception e) {
