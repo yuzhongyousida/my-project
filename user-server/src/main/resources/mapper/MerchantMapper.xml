@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.user.mapper.MerchantMapper">
+    <select id="selectMerchantById" resultType="com.demo.user.entity.Merchant">
+        SELECT id, name, phone, address, description FROM merchant WHERE id = #{id}
+    </select>
+
+    <select id="selectAllMerchants" resultType="com.demo.user.entity.Merchant">
+        SELECT id, name, phone, address, description FROM merchant
+    </select>
+
+    <insert id="insertMerchant" parameterType="com.demo.user.entity.Merchant" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO merchant (name, phone, address, description) VALUES (#{name}, #{phone}, #{address}, #{description})
+    </insert>
+
+    <update id="updateMerchant" parameterType="com.demo.user.entity.Merchant">
+        UPDATE merchant SET name = #{name}, phone = #{phone}, address = #{address}, description = #{description} WHERE id = #{id}
+    </update>
+
+    <delete id="deleteMerchant" parameterType="java.lang.Long">
+        DELETE FROM merchant WHERE id = #{id}
+    </delete>
+</mapper>
