@@ -27,3 +27,56 @@ public class GlobalExceptionHandler {
         logger.error("参数验证异常: {}", e.getMessage());
         Map<String, Object> result = new HashMap<>();
         result.put("code", 400);
+        result.put("message", "参数验证失败");
+        
+        Map<String, String> errors = new HashMap<>();
+        for (FieldError error : e.getBindingResult().getFieldErrors()) {
+            errors.put(error.getField(), error.getDefaultMessage());
+        }
+        result.put("errors", errors);
+        return result;
+    }
+
+    @ExceptionHandler(BindException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, Object> handleBindException(BindException e) {
+        logger.error("参数绑定异常: {}", e.getMessage());
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", 400);
+        result.put("message", "参数绑定失败");
+        
+        Map<String, String> errors = new HashMap<>();
+        for (FieldError error : e.getBindingResult().getFieldErrors()) {
+            errors.put(error.getField(), error.getDefaultMessage());
+        }
+        result.put("errors", errors);
+        return result;
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, Object> handleConstraintViolationException(ConstraintViolationException e) {
+        logger.error("约束验证异常: {}", e.getMessage());
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", 400);
+        result.put("message", "约束验证失败");
+        
+        Map<String, String> errors = new HashMap<>();
+        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+        for (ConstraintViolation<?> violation : violations) {
+            errors.put(violation.getPropertyPath().toString(), violation.getMessage());
+        }
+        result.put("errors", errors);
+        return result;
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Map<String, Object> handleException(Exception e) {
+        logger.error("系统异常: ", e);
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", 500);
+        result.put("message", "系统内部错误");
+        return result;
+    }
+}

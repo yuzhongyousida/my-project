@@ -4,14 +4,74 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.demo.product.mapper.ProductMapper">
     <select id="selectProductById" resultType="com.demo.product.entity.Product">
-        SELECT id, name, price, stock FROM product WHERE id = #{id}
+        SELECT id, merchant_id, name, price, stock, is_deleted FROM product WHERE id = #{id} AND is_deleted = 0
     </select>
 
     <select id="selectAllProducts" resultType="com.demo.product.entity.Product">
-        SELECT id, name, price, stock FROM product
+        SELECT id, merchant_id, name, price, stock, is_deleted FROM product WHERE is_deleted = 0
     </select>
 
     <insert id="insertProduct" parameterType="com.demo.product.entity.Product" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO product (name, price, stock) VALUES (#{name}, #{price}, #{stock})
+        INSERT INTO product (merchant_id, name, price, stock, is_deleted) VALUES (#{merchantId}, #{name}, #{price}, #{stock}, 0)
     </insert>
+
+    <update id="updateProduct" parameterType="com.demo.product.entity.Product">
+        UPDATE product SET merchant_id = #{merchantId}, name = #{name}, price = #{price}, stock = #{stock} WHERE id = #{id} AND is_deleted = 0
+    </update>
+
+    <update id="deleteProduct" parameterType="java.lang.Long">
+        UPDATE product SET is_deleted = 1 WHERE id = #{id} AND is_deleted = 0
+    </update>
+
+    <select id="selectProductsByCondition" resultType="com.demo.product.entity.Product">
+        SELECT id, merchant_id, name, price, stock, is_deleted FROM product
+        <where>
+            is_deleted = 0
+            <if test="merchantId != null">
+                AND merchant_id = #{merchantId}
+            </if>
+            <if test="name != null and name != ''">
+                AND name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="minPrice != null">
+                AND price &gt;= #{minPrice}
+            </if>
+            <if test="maxPrice != null">
+                AND price &lt;= #{maxPrice}
+            </if>
+            <if test="minStock != null">
+                AND stock &gt;= #{minStock}
+            </if>
+            <if test="maxStock != null">
+                AND stock &lt;= #{maxStock}
+            </if>
+        </where>
+        ORDER BY id DESC
+        LIMIT #{pageSize} OFFSET (#{pageNum} - 1) * #{pageSize}
+    </select>
+
+    <select id="countProductsByCondition" resultType="int">
+        SELECT COUNT(*) FROM product
+        <where>
+            is_deleted = 0
+            <if test="merchantId != null">
+                AND merchant_id = #{merchantId}
+            </if>
+            <if test="name != null and name != ''">
+                AND name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="minPrice != null">
+                AND price &gt;= #{minPrice}
+            </if>
+            <if test="maxPrice != null">
+                AND price &lt;= #{maxPrice}
+            </if>
+            <if test="minStock != null">
+                AND stock &gt;= #{minStock}
+            </if>
+            <if test="maxStock != null">
+                AND stock &lt;= #{maxStock}
+            </if>
+        </where>
+    </select>
 </mapper>

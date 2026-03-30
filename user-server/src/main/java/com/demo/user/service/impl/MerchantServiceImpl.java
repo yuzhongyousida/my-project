@@ -5,6 +5,7 @@ import com.demo.user.mapper.MerchantMapper;
 import com.demo.user.service.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,16 +26,19 @@ public class MerchantServiceImpl implements MerchantService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean addMerchant(Merchant merchant) {
         return merchantMapper.insertMerchant(merchant) > 0;
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean updateMerchant(Merchant merchant) {
         return merchantMapper.updateMerchant(merchant) > 0;
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean deleteMerchant(Long id) {
         return merchantMapper.deleteMerchant(id) > 0;
     }

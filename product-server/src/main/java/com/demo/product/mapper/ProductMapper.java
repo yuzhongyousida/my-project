@@ -1,6 +1,7 @@
 package com.demo.product.mapper;
 
 import com.demo.product.entity.Product;
+import com.demo.product.entity.ProductQuery;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -20,5 +21,12 @@ public interface ProductMapper {
 
     int insertProduct(Product product);
 
+    int updateProduct(Product product);
+
+    int deleteProduct(Long id);
+
+    List<Product> selectProductsByCondition(ProductQuery query);
+
+    int countProductsByCondition(ProductQuery query);
 
 }

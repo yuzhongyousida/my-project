@@ -56,6 +56,13 @@
             <artifactId>spring-boot-starter</artifactId>
             <version>2.7.18</version>
         </dependency>
+
+        <!-- 验证依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+            <version>2.7.18</version>
+        </dependency>
     </dependencies>
 
     <!-- 打包插件（显式声明版本） -->

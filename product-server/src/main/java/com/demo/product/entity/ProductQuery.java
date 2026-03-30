@@ -1,10 +1,12 @@
 package com.demo.product.entity;
 
+import java.math.BigDecimal;
+
 public class ProductQuery {
     private Long merchantId;
     private String name;
-    private Double minPrice;
-    private Double maxPrice;
+    private BigDecimal minPrice;
+    private BigDecimal maxPrice;
     private Integer minStock;
     private Integer maxStock;
     private Integer pageNum = 1;
@@ -26,19 +28,19 @@ public class ProductQuery {
         this.name = name;
     }
 
-    public Double getMinPrice() {
+    public BigDecimal getMinPrice() {
         return minPrice;
     }
 
-    public void setMinPrice(Double minPrice) {
+    public void setMinPrice(BigDecimal minPrice) {
         this.minPrice = minPrice;
     }
 
-    public Double getMaxPrice() {
+    public BigDecimal getMaxPrice() {
         return maxPrice;
     }
 
-    public void setMaxPrice(Double maxPrice) {
+    public void setMaxPrice(BigDecimal maxPrice) {
         this.maxPrice = maxPrice;
     }
 
@@ -74,7 +76,7 @@ public class ProductQuery {
 
     public void setPageSize(Integer pageSize) {
         if (pageSize != null && pageSize > 0) {
-            this.pageSize = pageSize;
+            this.pageSize = pageSize > 100 ? 100 : pageSize;
         }
     }
 }

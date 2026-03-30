@@ -58,4 +58,25 @@ public class GlobalExceptionHandler {
     public Map<String, Object> handleConstraintViolationException(ConstraintViolationException e) {
         logger.error("约束验证异常: {}", e.getMessage());
         Map<String, Object> result = new HashMap<>();
-        result.put("code",
+        result.put("code", 400);
+        result.put("message", "约束验证失败");
+        
+        Map<String, String> errors = new HashMap<>();
+        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+        for (ConstraintViolation<?> violation : violations) {
+            errors.put(violation.getPropertyPath().toString(), violation.getMessage());
+        }
+        result.put("errors", errors);
+        return result;
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Map<String, Object> handleException(Exception e) {
+        logger.error("系统异常: ", e);
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", 500);
+        result.put("message", "系统内部错误");
+        return result;
+    }
+}

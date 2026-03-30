@@ -1,6 +1,7 @@
 package com.demo.product.service;
 
 import com.demo.product.entity.Product;
+import com.demo.product.entity.ProductQuery;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -17,5 +18,13 @@ public interface ProductService {
     List<Product> getAllProducts();
 
     boolean addProduct(Product product);
+
+    boolean updateProduct(Product product);
+
+    boolean deleteProduct(Long id);
+
+    List<Product> queryProducts(ProductQuery query);
+
+    int countProducts(ProductQuery query);
 
 }
