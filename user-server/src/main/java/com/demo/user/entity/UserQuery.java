@@ -1,7 +1,5 @@
 package com.demo.user.entity;
 
-import org.springframework.util.StringUtils;
-
 import java.util.regex.Pattern;
 
 /**
@@ -27,7 +25,7 @@ public class UserQuery {
 
     public void setPhone(String phone) {
         // 手机号格式校验
-        if (phone != null && !StringUtils.isEmpty(phone) && !PHONE_PATTERN.matcher(phone).matches()) {
+        if (phone != null && !phone.trim().isEmpty() && !PHONE_PATTERN.matcher(phone).matches()) {
             throw new IllegalArgumentException("手机号格式不正确，必须是中国大陆地区的11位手机号");
         }
         this.phone = phone;
@@ -46,6 +44,12 @@ public class UserQuery {
     }
 
     public void setMinAge(Integer minAge) {
+        if (minAge != null && minAge < 0) {
+            throw new IllegalArgumentException("最小年龄不能为负数");
+        }
+        if (this.maxAge != null && minAge != null && minAge > this.maxAge) {
+            throw new IllegalArgumentException("最小年龄不能大于最大年龄");
+        }
         this.minAge = minAge;
     }
 
@@ -54,6 +58,12 @@ public class UserQuery {
     }
 
     public void setMaxAge(Integer maxAge) {
+        if (maxAge != null && maxAge < 0) {
+            throw new IllegalArgumentException("最大年龄不能为负数");
+        }
+        if (this.minAge != null && maxAge != null && maxAge < this.minAge) {
+            throw new IllegalArgumentException("最大年龄不能小于最小年龄");
+        }
         this.maxAge = maxAge;
     }
 
@@ -73,7 +83,7 @@ public class UserQuery {
 
     public void setPageSize(Integer pageSize) {
         if (pageSize != null && pageSize > 0) {
-            this.pageSize = pageSize;
+            this.pageSize = pageSize > 100 ? 100 : pageSize;
         }
     }
 }
